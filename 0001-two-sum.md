@@ -6,33 +6,38 @@
 class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
-        for (int i = 0; i < nums.size(); ++i) {
-            for (int j = i + 1; j < nums.size(); ++j) {
-                if (nums[i] + nums[j] == target) return {i, j};
+        // Time: O(n^2), Memory: O(1)
+        for (int i = 0; i < nums.size(); i++) {
+            for (int j = i + 1; j < nums.size(); j++) {
+                if (nums[i] + nums[j] == target) {
+                    return {i, j};
+                }
             }
         }
         return {};
     }
 };
-// Time: O(n^2), Memory: O(1)
 
 ```
 
-## Sweet Spot
+## time O(1) | Sweet Spot
 
 ```cpp
 class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
+        // Time: O(n), Memory: O(n)
         unordered_map<int, int> m;
-        for (int i = 0; i < nums.size(); ++i) {
-            if (m.count(target - nums[i])) return {m[target - nums[i]], i};
+        for (int i = 0; i < nums.size(); i++) {
+            int complement = target - nums[i];
+            if (m.count(complement)) {
+                return {m[complement], i};
+            }
             m[nums[i]] = i;
         }
         return {};
     }
 };
-// Time: O(n), Memory: O(n)
 
 ```
 
@@ -43,33 +48,37 @@ public:
 ```java
 class Solution {
     public int[] twoSum(int[] nums, int target) {
+        // Time: O(n^2), Memory: O(1)
         for (int i = 0; i < nums.length; i++) {
             for (int j = i + 1; j < nums.length; j++) {
-                if (nums[i] + nums[j] == target) return new int[]{i, j};
+                if (nums[i] + nums[j] == target) {
+                    return new int[] { i, j };
+                }
             }
         }
-        return new int[]{};
+        return null;
     }
 }
-// Time: O(n^2), Memory: O(1)
 
 ```
 
-## Sweet Spot
+## time O(1) | Sweet Spot
 
 ```java
 class Solution {
     public int[] twoSum(int[] nums, int target) {
+        // Time: O(n), Memory: O(n)
         Map<Integer, Integer> map = new HashMap<>();
         for (int i = 0; i < nums.length; i++) {
             int complement = target - nums[i];
-            if (map.containsKey(complement)) return new int[]{map.get(complement), i};
+            if (map.containsKey(complement)) {
+                return new int[] { map.get(complement), i };
+            }
             map.put(nums[i], i);
         }
-        return new int[]{};
+        return null;
     }
 }
-// Time: O(n), Memory: O(n)
 
 ```
 
@@ -80,26 +89,26 @@ class Solution {
 ```python 3.14
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
+        # Time: O(n^2), Memory: O(1)
         for i in range(len(nums)):
             for j in range(i + 1, len(nums)):
                 if nums[i] + nums[j] == target:
                     return [i, j]
-# Time: O(n^2), Memory: O(1)
 
 ```
 
-## Sweet Spot
+## time O(1) | Sweet Spot
 
 ```python 3.14
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
+        # Time: O(n), Memory: O(n)
         prevMap = {}
         for i, n in enumerate(nums):
             diff = target - n
             if diff in prevMap:
                 return [prevMap[diff], i]
             prevMap[n] = i
-# Time: O(n), Memory: O(n)
 
 ```
 
@@ -110,26 +119,36 @@ class Solution:
 ```python 2.7.11
 class Solution(object):
     def twoSum(self, nums, target):
-        for i in range(len(nums)):
-            for j in range(i + 1, len(nums)):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+        # Time: O(n^2), Memory: O(1)
+        for i in xrange(len(nums)):
+            for j in xrange(i + 1, len(nums)):
                 if nums[i] + nums[j] == target:
                     return [i, j]
-# Time: O(n^2), Memory: O(1)
 
 ```
 
-## Sweet Spot
+## time O(1) | Sweet Spot
 
 ```python 2.7.11
 class Solution(object):
     def twoSum(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+        # Time: O(n), Memory: O(n)
         prevMap = {}
         for i, n in enumerate(nums):
             diff = target - n
             if diff in prevMap:
                 return [prevMap[diff], i]
             prevMap[n] = i
-# Time: O(n), Memory: O(n)
 
 ```
 
@@ -138,29 +157,43 @@ class Solution(object):
 ## memory O(1)
 
 ```javascript
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number[]}
+ */
 var twoSum = function(nums, target) {
+    // Time: O(n^2), Memory: O(1)
     for (let i = 0; i < nums.length; i++) {
         for (let j = i + 1; j < nums.length; j++) {
-            if (nums[i] + nums[j] === target) return [i, j];
+            if (nums[i] + nums[j] === target) {
+                return [i, j];
+            }
         }
     }
 };
-// Time: O(n^2), Memory: O(1)
 
 ```
 
-## Sweet Spot
+## time O(1) | Sweet Spot
 
 ```javascript
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number[]}
+ */
 var twoSum = function(nums, target) {
+    // Time: O(n), Memory: O(n)
     const map = new Map();
     for (let i = 0; i < nums.length; i++) {
         const diff = target - nums[i];
-        if (map.has(diff)) return [map.get(diff), i];
+        if (map.has(diff)) {
+            return [map.get(diff), i];
+        }
         map.set(nums[i], i);
     }
 };
-// Time: O(n), Memory: O(n)
 
 ```
 
@@ -170,30 +203,34 @@ var twoSum = function(nums, target) {
 
 ```typescript
 function twoSum(nums: number[], target: number): number[] {
+    // Time: O(n^2), Memory: O(1)
     for (let i = 0; i < nums.length; i++) {
         for (let j = i + 1; j < nums.length; j++) {
-            if (nums[i] + nums[j] === target) return [i, j];
+            if (nums[i] + nums[j] === target) {
+                return [i, j];
+            }
         }
     }
     return [];
 };
-// Time: O(n^2), Memory: O(1)
 
 ```
 
-## Sweet Spot
+## time O(1) | Sweet Spot
 
 ```typescript
 function twoSum(nums: number[], target: number): number[] {
+    // Time: O(n), Memory: O(n)
     const map = new Map<number, number>();
     for (let i = 0; i < nums.length; i++) {
         const diff = target - nums[i];
-        if (map.has(diff)) return [map.get(diff)!, i];
+        if (map.has(diff)) {
+            return [map.get(diff)!, i];
+        }
         map.set(nums[i], i);
     }
     return [];
 };
-// Time: O(n), Memory: O(n)
 
 ```
 
@@ -204,33 +241,37 @@ function twoSum(nums: number[], target: number): number[] {
 ```c#
 public class Solution {
     public int[] TwoSum(int[] nums, int target) {
+        // Time: O(n^2), Memory: O(1)
         for (int i = 0; i < nums.Length; i++) {
             for (int j = i + 1; j < nums.Length; j++) {
-                if (nums[i] + nums[j] == target) return new int[] { i, j };
+                if (nums[i] + nums[j] == target) {
+                    return new int[] { i, j };
+                }
             }
         }
-        return new int[0];
+        return null;
     }
 }
-// Time: O(n^2), Memory: O(1)
 
 ```
 
-## Sweet Spot
+## time O(1) | Sweet Spot
 
 ```c#
 public class Solution {
     public int[] TwoSum(int[] nums, int target) {
+        // Time: O(n), Memory: O(n)
         Dictionary<int, int> map = new Dictionary<int, int>();
         for (int i = 0; i < nums.Length; i++) {
             int diff = target - nums[i];
-            if (map.ContainsKey(diff)) return new int[] { map[diff], i };
+            if (map.ContainsKey(diff)) {
+                return new int[] { map[diff], i };
+            }
             map[nums[i]] = i;
         }
-        return new int[0];
+        return null;
     }
 }
-// Time: O(n), Memory: O(n)
 
 ```
 
@@ -239,49 +280,61 @@ public class Solution {
 ## memory O(1)
 
 ```c
+/**
+ * Note: The returned array must be malloced, assume caller calls free().
+ */
 int* twoSum(int* nums, int numsSize, int target, int* returnSize) {
+    // Time: O(n^2), Memory: O(1)
     *returnSize = 2;
-    int* res = (int*)malloc(2 * sizeof(int));
+    int* result = (int*)malloc(2 * sizeof(int));
     for (int i = 0; i < numsSize; i++) {
         for (int j = i + 1; j < numsSize; j++) {
             if (nums[i] + nums[j] == target) {
-                res[0] = i; res[1] = j;
-                return res;
+                result[0] = i;
+                result[1] = j;
+                return result;
             }
         }
     }
-    return res;
+    return NULL;
 }
-// Time: O(n^2), Memory: O(1)
 
 ```
 
-## Sweet Spot
+## time O(1) | Sweet Spot
 
 ```c
+/**
+ * Note: The returned array must be malloced, assume caller calls free().
+ */
 typedef struct {
     int key;
     int val;
-    UT_hash_handle hh;
-} map;
+} hash_t;
+
 int* twoSum(int* nums, int numsSize, int target, int* returnSize) {
-    map *hash = NULL, *item;
+    // Time: O(n), Memory: O(n)
     *returnSize = 2;
-    int* res = (int*)malloc(2 * sizeof(int));
+    int* result = (int*)malloc(2 * sizeof(int));
+    hash_t* hash = (hash_t*)malloc(numsSize * sizeof(hash_t));
+    int size = 0;
     for (int i = 0; i < numsSize; i++) {
         int diff = target - nums[i];
-        HASH_FIND_INT(hash, &diff, item);
-        if (item) {
-            res[0] = item->val; res[1] = i;
-            return res;
+        for (int j = 0; j < size; j++) {
+            if (hash[j].key == diff) {
+                result[0] = hash[j].val;
+                result[1] = i;
+                free(hash);
+                return result;
+            }
         }
-        item = malloc(sizeof(map));
-        item->key = nums[i]; item->val = i;
-        HASH_ADD_INT(hash, key, item);
+        hash[size].key = nums[i];
+        hash[size].val = i;
+        size++;
     }
-    return res;
+    free(hash);
+    return NULL;
 }
-// Time: O(n), Memory: O(n)
 
 ```
 
@@ -291,33 +344,34 @@ int* twoSum(int* nums, int numsSize, int target, int* returnSize) {
 
 ```go
 func twoSum(nums []int, target int) []int {
+    // Time: O(n^2), Memory: O(1)
     for i := 0; i < len(nums); i++ {
         for j := i + 1; j < len(nums); j++ {
-            if nums[i] + nums[j] == target {
+            if nums[i]+nums[j] == target {
                 return []int{i, j}
             }
         }
     }
     return nil
 }
-// Time: O(n^2), Memory: O(1)
 
 ```
 
-## Sweet Spot
+## time O(1) | Sweet Spot
 
 ```go
 func twoSum(nums []int, target int) []int {
+    // Time: O(n), Memory: O(n)
     m := make(map[int]int)
     for i, n := range nums {
-        if idx, ok := m[target-n]; ok {
+        diff := target - n
+        if idx, ok := m[diff]; ok {
             return []int{idx, i}
         }
         m[n] = i
     }
     return nil
 }
-// Time: O(n), Memory: O(n)
 
 ```
 
@@ -328,33 +382,37 @@ func twoSum(nums []int, target int) []int {
 ```kotlin
 class Solution {
     fun twoSum(nums: IntArray, target: Int): IntArray {
+        // Time: O(n^2), Memory: O(1)
         for (i in nums.indices) {
             for (j in i + 1 until nums.size) {
-                if (nums[i] + nums[j] == target) return intArrayOf(i, j)
+                if (nums[i] + nums[j] == target) {
+                    return intArrayOf(i, j)
+                }
             }
         }
         return intArrayOf()
     }
 }
-// Time: O(n^2), Memory: O(1)
 
 ```
 
-## Sweet Spot
+## time O(1) | Sweet Spot
 
 ```kotlin
 class Solution {
     fun twoSum(nums: IntArray, target: Int): IntArray {
+        // Time: O(n), Memory: O(n)
         val map = mutableMapOf<Int, Int>()
         for (i in nums.indices) {
-            val complement = target - nums[i]
-            if (map.containsKey(complement)) return intArrayOf(map[complement]!!, i)
+            val diff = target - nums[i]
+            if (map.containsKey(diff)) {
+                return intArrayOf(map[diff]!!, i)
+            }
             map[nums[i]] = i
         }
         return intArrayOf()
     }
 }
-// Time: O(n), Memory: O(n)
 
 ```
 
@@ -365,32 +423,37 @@ class Solution {
 ```swift
 class Solution {
     func twoSum(_ nums: [Int], _ target: Int) -> [Int] {
+        // Time: O(n^2), Memory: O(1)
         for i in 0..<nums.count {
             for j in (i + 1)..<nums.count {
-                if nums[i] + nums[j] == target { return [i, j] }
+                if nums[i] + nums[j] == target {
+                    return [i, j]
+                }
             }
         }
         return []
     }
 }
-// Time: O(n^2), Memory: O(1)
 
 ```
 
-## Sweet Spot
+## time O(1) | Sweet Spot
 
 ```swift
 class Solution {
     func twoSum(_ nums: [Int], _ target: Int) -> [Int] {
-        var map = [Int: Int]()
+        // Time: O(n), Memory: O(n)
+        var dict = [Int: Int]()
         for (i, n) in nums.enumerated() {
-            if let idx = map[target - n] { return [idx, i] }
-            map[n] = i
+            let diff = target - n
+            if let idx = dict[diff] {
+                return [idx, i]
+            }
+            dict[n] = i
         }
         return []
     }
 }
-// Time: O(n), Memory: O(n)
 
 ```
 
@@ -401,33 +464,39 @@ class Solution {
 ```rust
 impl Solution {
     pub fn two_sum(nums: Vec<i32>, target: i32) -> Vec<i32> {
+        // Time: O(n^2), Memory: O(1)
         for i in 0..nums.len() {
-            for j in i + 1..nums.len() {
-                if nums[i] + nums[j] == target { return vec![i as i32, j as i32]; }
+            for j in (i + 1)..nums.len() {
+                if nums[i] + nums[j] == target {
+                    return vec![i as i32, j as i32];
+                }
             }
         }
         vec![]
     }
 }
-// Time: O(n^2), Memory: O(1)
 
 ```
 
-## Sweet Spot
+## time O(1) | Sweet Spot
 
 ```rust
 use std::collections::HashMap;
+
 impl Solution {
     pub fn two_sum(nums: Vec<i32>, target: i32) -> Vec<i32> {
+        // Time: O(n), Memory: O(n)
         let mut map = HashMap::new();
         for (i, &n) in nums.iter().enumerate() {
-            if let Some(&idx) = map.get(&(target - n)) { return vec![idx as i32, i as i32]; }
+            let diff = target - n;
+            if let Some(&idx) = map.get(&diff) {
+                return vec![idx as i32, i as i32];
+            }
             map.insert(n, i);
         }
         vec![]
     }
 }
-// Time: O(n), Memory: O(n)
 
 ```
 
@@ -436,29 +505,35 @@ impl Solution {
 ## memory O(1)
 
 ```ruby
+# @param {Integer[]} nums
+# @param {Integer} target
+# @return {Integer[]}
 def two_sum(nums, target)
+    # Time: O(n^2), Memory: O(1)
     nums.each_with_index do |n1, i|
-        nums.each_with_index do |n2, j|
-            next if i >= j
-            return [i, j] if n1 + n2 == target
+        ((i + 1)...nums.length).each do |j|
+            return [i, j] if n1 + nums[j] == target
         end
     end
 end
-# Time: O(n^2), Memory: O(1)
 
 ```
 
-## Sweet Spot
+## time O(1) | Sweet Spot
 
 ```ruby
+# @param {Integer[]} nums
+# @param {Integer} target
+# @return {Integer[]}
 def two_sum(nums, target)
-    map = {}
+    # Time: O(n), Memory: O(n)
+    dict = {}
     nums.each_with_index do |n, i|
-        return [map[target - n], i] if map.key?(target - n)
-        map[n] = i
+        diff = target - n
+        return [dict[diff], i] if dict.key?(diff)
+        dict[n] = i
     end
 end
-# Time: O(n), Memory: O(n)
 
 ```
 
@@ -468,32 +543,46 @@ end
 
 ```php
 class Solution {
+    /**
+     * @param Integer[] $nums
+     * @param Integer $target
+     * @return Integer[]
+     */
     function twoSum($nums, $target) {
+        // Time: O(n^2), Memory: O(1)
         for ($i = 0; $i < count($nums); $i++) {
             for ($j = $i + 1; $j < count($nums); $j++) {
-                if ($nums[$i] + $nums[$j] == $target) return [$i, $j];
+                if ($nums[$i] + $nums[$j] == $target) {
+                    return [$i, $j];
+                }
             }
         }
     }
 }
-// Time: O(n^2), Memory: O(1)
 
 ```
 
-## Sweet Spot
+## time O(1) | Sweet Spot
 
 ```php
 class Solution {
+    /**
+     * @param Integer[] $nums
+     * @param Integer $target
+     * @return Integer[]
+     */
     function twoSum($nums, $target) {
+        // Time: O(n), Memory: O(n)
         $map = [];
         foreach ($nums as $i => $n) {
             $diff = $target - $n;
-            if (isset($map[$diff])) return [$map[$diff], $i];
+            if (array_key_exists($diff, $map)) {
+                return [$map[$diff], $i];
+            }
             $map[$n] = $i;
         }
     }
 }
-// Time: O(n), Memory: O(n)
 
 ```
 
@@ -504,33 +593,37 @@ class Solution {
 ```dart
 class Solution {
   List<int> twoSum(List<int> nums, int target) {
+    // Time: O(n^2), Memory: O(1)
     for (int i = 0; i < nums.length; i++) {
       for (int j = i + 1; j < nums.length; j++) {
-        if (nums[i] + nums[j] == target) return [i, j];
+        if (nums[i] + nums[j] == target) {
+          return [i, j];
+        }
       }
     }
     return [];
   }
 }
-// Time: O(n^2), Memory: O(1)
 
 ```
 
-## Sweet Spot
+## time O(1) | Sweet Spot
 
 ```dart
 class Solution {
   List<int> twoSum(List<int> nums, int target) {
+    // Time: O(n), Memory: O(n)
     Map<int, int> map = {};
     for (int i = 0; i < nums.length; i++) {
       int diff = target - nums[i];
-      if (map.containsKey(diff)) return [map[diff]!, i];
+      if (map.containsKey(diff)) {
+        return [map[diff]!, i];
+      }
       map[nums[i]] = i;
     }
     return [];
   }
 }
-// Time: O(n), Memory: O(n)
 
 ```
 
@@ -541,31 +634,39 @@ class Solution {
 ```scala
 object Solution {
     def twoSum(nums: Array[Int], target: Int): Array[Int] = {
-        for (i <- 0 until nums.length; j <- i + 1 until nums.length) {
-            if (nums(i) + nums(j) == target) return Array(i, j)
+        // Time: O(n^2), Memory: O(1)
+        for (i <- 0 until nums.length) {
+            for (j <- i + 1 until nums.length) {
+                if (nums(i) + nums(j) == target) {
+                    return Array(i, j)
+                }
+            }
         }
         Array()
     }
 }
-// Time: O(n^2), Memory: O(1)
 
 ```
 
-## Sweet Spot
+## time O(1) | Sweet Spot
 
 ```scala
+import scala.collection.mutable
+
 object Solution {
     def twoSum(nums: Array[Int], target: Int): Array[Int] = {
-        val map = scala.collection.mutable.Map[Int, Int]()
-        for (i <- nums.indices) {
+        // Time: O(n), Memory: O(n)
+        val map = mutable.HashMap[Int, Int]()
+        for (i <- 0 until nums.length) {
             val diff = target - nums(i)
-            if (map.contains(diff)) return Array(map(diff), i)
+            if (map.contains(diff)) {
+                return Array(map(diff), i)
+            }
             map(nums(i)) = i
         }
         Array()
     }
 }
-// Time: O(n), Memory: O(n)
 
 ```
 
@@ -575,31 +676,37 @@ object Solution {
 
 ```elixir
 defmodule Solution do
+  @spec two_sum(nums :: [integer], target :: integer) :: [integer]
   def two_sum(nums, target) do
-    n = Enum.count(nums)
+    # Time: O(n^2), Memory: O(1)
     indexed = Enum.with_index(nums)
-    for {v1, i} <- indexed, {v2, j} <- indexed, i < j, v1 + v2 == target, do: [i, j]
-    |> List.first()
-  end
-end
-# Time: O(n^2), Memory: O(1)
-
-```
-
-## Sweet Spot
-
-```elixir
-defmodule Solution do
-  def two_sum(nums, target) do
-    nums
-    |> Enum.with_index()
-    |> Enum.reduce_while(%{}, fn {n, i}, map ->
-      diff = target - n
-      if Map.has_key?(map, diff), do: {:halt, [map[diff], i]}, else: {:cont, Map.put(map, n, i)}
+    Enum.find_value(indexed, fn {n1, i} ->
+      Enum.find_value(Enum.drop(indexed, i + 1), fn {n2, j} ->
+        if n1 + n2 == target, do: [i, j]
+      end)
     end)
   end
 end
-# Time: O(n), Memory: O(n)
+
+```
+
+## time O(1) | Sweet Spot
+
+```elixir
+defmodule Solution do
+  @spec two_sum(nums :: [integer], target :: integer) :: [integer]
+  def two_sum(nums, target) do
+    # Time: O(n), Memory: O(n)
+    Enum.reduce_while(Enum.with_index(nums), %{}, fn {n, i}, map ->
+      diff = target - n
+      if Map.has_key?(map, diff) do
+        {:halt, [Map.get(map, diff), i]}
+      else
+        {:cont, Map.put(map, n, i)}
+      end
+    end)
+  end
+end
 
 ```
 
@@ -608,25 +715,28 @@ end
 ## memory O(1)
 
 ```erlang
+-spec two_sum(Nums :: [integer()], Target :: integer()) -> [integer()].
 two_sum(Nums, Target) ->
-    Indexed = lists:zip(lists:seq(0, length(Nums)-1), Nums),
-    [[I, J] || {I, V1} <- Indexed, {J, V2} <- Indexed, I < J, V1 + V2 == Target].
-% Time: O(n^2), Memory: O(1)
+    % Time: O(n^2), Memory: O(1)
+    Indexed = lists:zip(Nums, lists:seq(0, length(Nums) - 1)),
+    hd([ [I, J] || {N1, I} <- Indexed, {N2, J} <- Indexed, I < J, N1 + N2 == Target ]).
 
 ```
 
-## Sweet Spot
+## time O(1) | Sweet Spot
 
 ```erlang
+-spec two_sum(Nums :: [integer()], Target :: integer()) -> [integer()].
 two_sum(Nums, Target) ->
-    solve(Nums, Target, 0, #{}).
-solve([H|T], Target, Index, Map) ->
+    % Time: O(n), Memory: O(n)
+    two_sum(Nums, Target, 0, #{}).
+
+two_sum([H|T], Target, Index, Map) ->
     Diff = Target - H,
     case maps:find(Diff, Map) of
         {ok, PrevIndex} -> [PrevIndex, Index];
-        error -> solve(T, Target, Index + 1, maps:put(H, Index, Map))
+        error -> two_sum(T, Target, Index + 1, Map#{H => Index})
     end.
-% Time: O(n), Memory: O(n)
 
 ```
 
@@ -637,23 +747,26 @@ solve([H|T], Target, Index, Map) ->
 ```racket
 (define/contract (two-sum nums target)
   (-> (listof exact-integer?) exact-integer? (listof exact-integer?))
-  (let ([len (length nums)] [arr (list->vector nums)])
-    (for*/first ([i (in-range len)] [j (in-range (add1 i) len)] #:when (= (+ (vector-ref arr i) (vector-ref arr j)) target))
+  ; Time: O(n^2), Memory: O(1)
+  (let ([len (length nums)])
+    (for*/first ([i (in-range len)]
+                 [j (in-range (+ i 1) len)]
+                 #:when (= (+ (list-ref nums i) (list-ref nums j)) target))
       (list i j))))
-; Time: O(n^2), Memory: O(1)
 
 ```
 
-## Sweet Spot
+## time O(1) | Sweet Spot
 
 ```racket
 (define/contract (two-sum nums target)
   (-> (listof exact-integer?) exact-integer? (listof exact-integer?))
-  (let loop ([ns nums] [i 0] [ht (hash)])
-    (let* ([n (car ns)] [diff (- target n)])
-      (if (hash-has-key? ht diff)
-          (list (hash-ref ht diff) i)
-          (loop (cdr ns) (add1 i) (hash-set ht n i))))))
-; Time: O(n), Memory: O(n)
+  ; Time: O(n), Memory: O(n)
+  (let loop ([ns nums] [i 0] [seen (hash)])
+    (let* ([n (car ns)]
+           [diff (- target n)])
+      (if (hash-has-key? seen diff)
+          (list (hash-ref seen diff) i)
+          (loop (cdr ns) (+ i 1) (hash-set seen n i))))))
 
 ```
