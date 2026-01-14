@@ -1,5 +1,3 @@
-# README
-
 # cpp
 
 ## memory O(1)
